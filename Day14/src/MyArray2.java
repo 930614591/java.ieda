@@ -3,42 +3,42 @@ package array;
 import java.util.Random;
 
 /*
-* 通用的数组工具：增删改查
-* @authon long
-* @version 1.0.0
-* */
-public class MyArray {
+ * 通用的数组工具：增删改查
+ * @authon long
+ * @version 1.0.0
+ * */
+public class MyArray2 {
     private  static  final int DEFSULT_CAPACITY=10;//数组的默认容量10 默认长度
     private  int capacity;//初始容量，自定义容量
     private  Object[] array;//自定义数组///new String[DEFSULT_CAPACITY];
     private  int size;//记录已经存到那个位置了
 
-    public MyArray(){
+    public MyArray2(){
         super();
         capacity=DEFSULT_CAPACITY;
-        array=new String[capacity];//无参默认创建的数组长度就是10
+        array=new Object[capacity];//无参默认创建的数组长度就是10
     }
 
-    public MyArray(int capacity){
+    public MyArray2(int capacity){
         super();
         this.capacity=capacity;
-        array=new String[capacity];//无参默认创建的数组长度就是10
+        array=new Object[capacity];//无参默认创建的数组长度就是10
     }
     /*
-    * 1.数组中添加元素
-    * */
-    public boolean add(String str){
+     * 1.数组中添加元素
+     * */
+    public boolean add(Object obj){
         //1 判断容量并扩容
         ensureCapacity(size +1);//表示先判断在存放下个元素前，是否需要先扩容 保证先扩容再存放
         //将元素存入数组中
-        array[size++]=str;
+        array[size++]=obj;
         return  false;
     }
 
     /*
-    * 扩容的判断
-    * index当前要存放的的元素个数
-    * */
+     * 扩容的判断
+     * index当前要存放的的元素个数
+     * */
     private void  ensureCapacity(int index){
         //System.out.println("数组长度为:"+capacity);
         if(index>=capacity*0.75){
@@ -48,8 +48,8 @@ public class MyArray {
     }
 
     /*
-    * 真正的扩容
-    * */
+     * 真正的扩容
+     * */
     private void grow() {
         capacity=capacity+(capacity>>1);//新数组的容量 扩容1.5倍
         //2.创建新数组
@@ -63,8 +63,8 @@ public class MyArray {
     }
 
     /*
-    * 展示数组中已存在的元素
-    * */
+     * 展示数组中已存在的元素
+     * */
     public StringBuilder display(){
         StringBuilder builder=new StringBuilder();
         builder.append("[");
@@ -81,9 +81,9 @@ public class MyArray {
     }
 
     /*
-    * 查询元素
-    * 通过指定的索引类获取这个索引处的值
-    * */
+     * 查询元素
+     * 通过指定的索引类获取这个索引处的值
+     * */
     public  Object get(int index){
         rangeCheck(index);//检查是否越界
         return array[index];
@@ -102,8 +102,8 @@ public class MyArray {
     }
 
     /*
-    * 4.删除指定的索引位置
-    * */
+     * 4.删除指定的索引位置
+     * */
     public Object remmov(int index){
         rangeCheck(index);//检查是否越界
         Object temp=array[index];
@@ -119,15 +119,15 @@ public class MyArray {
     }
 
     /*
-    * 5.返回数组中真实的元素个数
-    * */
+     * 5.返回数组中真实的元素个数
+     * */
     public  int size(){
         return  size;
     }
 
     /*
-    * 6.返回元素在数组中第一次出新的索引
-    * */
+     * 6.返回元素在数组中第一次出新的索引
+     * */
     public  int indexOf(String str){
         if (str==null)
             return -1;
@@ -140,8 +140,8 @@ public class MyArray {
     }
 
     /*
-    * 7.判断数组中是否真实存在元素
-    * */
+     * 7.判断数组中是否真实存在元素
+     * */
     public boolean isEmpty(){
 
         return size==0;
@@ -149,16 +149,16 @@ public class MyArray {
 
 
     /*
-    *8. 判断此元素是否在数组中存在
-    * */
+     *8. 判断此元素是否在数组中存在
+     * */
     public  boolean contains(String value){
         return indexOf(value)!=-1;
     }
 
     /*
-    * 9. 统计当前元素在数组中元素出现的次数
-    *
-    * */
+     * 9. 统计当前元素在数组中元素出现的次数
+     *
+     * */
     public int count(String str){
         if (str==null) return 0;
         int count=0;
@@ -171,8 +171,8 @@ public class MyArray {
     }
 
     /*
-    *10. 随机打乱数组中的元素
-    * */
+     *10. 随机打乱数组中的元素
+     * */
     public void shuffle(){
         Random random=new Random();
         int randomeIndex=random.nextInt(size);//生成真是长度内随机数
@@ -188,9 +188,9 @@ public class MyArray {
     }
 
     /*
-    * 11.反转：数组元素倒序
-    *
-    * */
+     * 11.反转：数组元素倒序
+     *
+     * */
     public  void reverse(){
         for (int left=0,right=size-1;left<right;left++,right--){
             Object temp=array[left];
@@ -203,7 +203,7 @@ public class MyArray {
     //专用于判断索引是否越界，越界则抛出异常
     private boolean rangeCheck(int index) {
         if(index<0||index>=capacity){
-           // return false;
+            // return false;
             throw new ArrayIndexOutOfBoundsException();//数组索引越界异常 手动抛出
         }
         return  true;
